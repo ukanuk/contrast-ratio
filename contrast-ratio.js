@@ -71,6 +71,24 @@ function rangeIntersect(min, max, upper, lower) {
 	return (max < upper? max : upper) - (lower < min? min : lower);
 }
 
+function updateLabeledColor(input) {
+	var luminanceOutput = $(".current-labeled-color", input.parentNode);
+
+	var color = input.color;
+
+	if (input.color.alpha < 1) {
+		var lumBlack = color.overlayOn(Color.BLACK).luminance;
+		var lumWhite = color.overlayOn(Color.WHITE).luminance;
+
+		luminanceOutput.style.color = Math.min(lumBlack, lumWhite) < .2? "white" : "black";
+	}
+	else {
+		luminanceOutput.style.color = color.luminance < .2? "white" : "black";
+	}
+	
+	luminanceOutput.textContent = color;
+}
+
 function updateLuminance(input) {
 	var luminanceOutput = $(".rl", input.parentNode);
 
@@ -105,6 +123,8 @@ function update() {
 console.log(contrast);
 		updateLuminance(background);
 		updateLuminance(foreground);
+		updateLabeledColor(background);
+		updateLabeledColor(foreground);
 
 		var min = contrast.min,
 		    max = contrast.max,

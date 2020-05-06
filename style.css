@@ -326,6 +326,18 @@ output.rl {
 		content: attr(aria-label) ": ";
 		font-weight: normal;
 	}
+	
+output.current-labeled-color {
+	display: block;
+	margin: .5em 0 0 1em;
+	font-size: 60%;
+	font-weight: bold;
+}
+
+	output.current-labeled-color::before {
+		content: attr(aria-label) ": ";
+		font-weight: normal;
+	}
 
 #preciseContrast {
 	display: block;

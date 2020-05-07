@@ -232,9 +232,12 @@ function colorChanged(input) {
 		}
 
 		input.color = new Color(color);
+		input.style.boxShadow = ".05em .1em .2em rgba(0,0,0,.4) inset";
 
 		return true;
 	}
+
+	input.style.boxShadow = "0 0 .2em rgba(255,0,0,0.9) inset";
 
 	return false;
 }
